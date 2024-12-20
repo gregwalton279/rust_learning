@@ -1,0 +1,9 @@
+[package]
+name = "lib"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+lib1 = {path = "../lib1"}
+lib2 = {path = "../lib2"}
+rand = "0.8.5"

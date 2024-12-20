@@ -1,6 +1,10 @@
-[package]
-name = "ch07_package_crate_module_path"
-version = "0.1.0"
-edition = "2021"
+[workspace]
+members = [
+    "app",
+    "lib",
+    "lib1",
+    "lib2",
+    "lib3",
+    "lib4",
+]
 
-[dependencies]
