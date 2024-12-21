@@ -1,0 +1,7 @@
+[workspace]
+members = [
+    "ch01_hello_world",
+    "ch02_guessing_game",
+    "ch08_collections_vector",
+]
+
