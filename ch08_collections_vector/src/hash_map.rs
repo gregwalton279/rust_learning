@@ -78,12 +78,12 @@ pub fn run() {
     company.add_employee1("Denny", "Kotlin");
     company.add_employee1("Henny", "Kotlin");
 
-    company.list_employees1("Kotlind").iter().for_each(|e|{
-        println!("Kotlin department {:?}",e);
+    company.list_employees1("Kotlind").iter().for_each(|e| {
+        println!("Kotlin department {:?}", e);
     });
 
-    company.list_all_employees().iter().for_each(|e|{
-        println!("all employee {:?}",e);
+    company.list_all_employees().iter().for_each(|e| {
+        println!("all employee {:?}", e);
     });
 }
 
@@ -107,7 +107,7 @@ impl Company {
 
     fn add_employee1(&mut self, name: &str, department: &str) {
         match self.departments.get_mut(department) {
-            Some(v) => {v.push(name.to_string()); }
+            Some(v) => { v.push(name.to_string()); }
             None => {
                 self.departments.insert(department.to_string(), Vec::new());
             }
@@ -196,7 +196,7 @@ fn get_mode2(numbers: &Vec<i32>) -> Option<i32> {
                 current
             }
         })
-        .map(|(k)| **k.0)
+        .map(|k| **k.0)
 }
 
 fn get_mode3(numbers: &Vec<i32>) -> Option<i32> {
@@ -208,7 +208,7 @@ fn get_mode3(numbers: &Vec<i32>) -> Option<i32> {
         })
         .iter()
         .max_by(|a, b| { (*a).1.cmp((*b).1) })
-        .map(|(k)| **k.0)
+        .map(|k| **k.0)
 }
 
 fn get_median(numbers: &Vec<i32>) -> Option<i32> {

@@ -22,6 +22,41 @@ pub struct Config {
 }
 
 impl Config {
+    pub fn build(
+        mut args: impl Iterator<Item=String>,
+    ) -> Result<Config, &'static str> {
+        let cmd = match args.next() {
+            Some(arg) => arg,
+            None => return Err("no cmd given"),
+        };
+
+        let query = match args.next() {
+            Some(arg) => arg,
+            None => return Err("no query given"),
+        };
+
+        let file_path = match args.next() {
+            Some(arg) => arg,
+            None => return Err("no file_path given"),
+        };
+        let ignore_case = env::var("IGNORE_CASE").map_or(false, |value| {
+            match value.as_str() {
+                "true" => true,
+                "false" => false,
+                "0" => false,
+                "1" => true,
+                _ => false
+            }
+        });
+
+        Ok(Config {
+            query,
+            file_path,
+            ignore_case,
+            cmd,
+        })
+    }
+
     pub fn new(args: &[String]) -> Result<Config, String> {
         if args.len() < 3 {
             Err(format!("Not enough arguments"))
@@ -52,12 +87,21 @@ impl Config {
     }
 }
 pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-    contents.lines().fold(Vec::new(), |mut acc, line| {
-        if line.contains(query) {
-            acc.push(line);
-        }
-        acc
-    })
+    contents
+        .lines()
+        .fold(Vec::new(), |mut acc, line| {
+            if line.contains(query) {
+                acc.push(line);
+            }
+            acc
+        })
+}
+
+pub fn better_search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
+    contents
+        .lines()
+        .filter(|line| line.contains(query))
+        .collect()
 }
 
 pub fn search_case_insensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
