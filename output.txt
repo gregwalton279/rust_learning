@@ -1,0 +1,79 @@
+warning: virtual workspace defaulting to `resolver = "1"` despite one or more workspace members being on edition 2021 which implies `resolver = "2"`
+note: to keep the current resolver, specify `workspace.resolver = "1"` in the workspace root's manifest
+note: to use the edition 2021 resolver, specify `workspace.resolver = "2"` in the workspace root's manifest
+note: for more details see https://doc.rust-lang.org/cargo/reference/resolver.html#resolver-versions
+   Compiling ch12_project_grep v0.1.0 (/Users/eugene/RustroverProjects/rust_learning/ch12_project_grep)
+warning: found module declaration for lib.rs
+ --> ch12_project_grep/src/main.rs:1:1
+  |
+1 | mod lib;
+  | ^^^^^^^^
+  |
+  = note: lib.rs is the root of this crate's library target
+  = help: to refer to it from other targets, use the library's name as the path
+  = note: `#[warn(special_module_name)]` on by default
+
+warning: unused import: `fs`
+ --> ch12_project_grep/src/main.rs:3:16
+  |
+3 | use std::{env, fs, process};
+  |                ^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `std::error::Error`
+ --> ch12_project_grep/src/main.rs:4:5
+  |
+4 | use std::error::Error;
+  |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `run`
+ --> ch12_project_grep/src/main.rs:5:18
+  |
+5 | use crate::lib::{run, Config};
+  |                  ^^^
+
+warning: unused doc comment
+ --> ch12_project_grep/src/main.rs:8:5
+  |
+8 |     /// 接收传递的参数
+  |     ^^^^^^^^^^^^^^^^^^
+9 |     let args: Vec<String> = env::args().collect::<Vec<String>>();
+  |     ------------------------------------------------------------- rustdoc does not generate documentation for statements
+  |
+  = help: use `//` for a plain comment
+  = note: `#[warn(unused_doc_comments)]` on by default
+
+warning: function `parse_config` is never used
+  --> ch12_project_grep/src/main.rs:26:4
+   |
+26 | fn parse_config(args: &Vec<String>) -> Config {
+   |    ^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+warning: struct `BetterConfig` is never constructed
+  --> ch12_project_grep/src/main.rs:39:8
+   |
+39 | struct BetterConfig<'a> {
+   |        ^^^^^^^^^^^^
+
+warning: function `parse_better` is never used
+  --> ch12_project_grep/src/main.rs:44:4
+   |
+44 | fn parse_better(args: &Vec<String>) -> BetterConfig {
+   |    ^^^^^^^^^^^^
+
+warning: field `cmd` is never read
+  --> ch12_project_grep/src/lib.rs:20:9
+   |
+17 | pub struct Config {
+   |            ------ field in this struct
+...
+20 |     pub cmd: String,
+   |         ^^^
+
+warning: `ch12_project_grep` (bin "ch12_project_grep") generated 9 warnings (run `cargo fix --bin "ch12_project_grep"` to apply 3 suggestions)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.00s
+     Running `target/debug/ch12_project_grep`
+["target/debug/ch12_project_grep"]
