@@ -2,6 +2,6 @@
 members = [
     "ch01_hello_world",
     "ch02_guessing_game",
-    "ch08_collections_vector", "ch09_panic", "ch10_generics_trait_lifetimes", "ch11_automated_tests", "ch12_project_grep", "ch13_iterators_closures", "ch15_smart_pointers", "ch16_process_threads", "ch17_object_programming",
+    "ch08_collections_vector", "ch09_panic", "ch10_generics_trait_lifetimes", "ch11_automated_tests", "ch12_project_grep", "ch13_iterators_closures", "ch15_smart_pointers", "ch16_process_threads", "ch17_object_programming", "ch18_patterns_matching",
 ]
 
